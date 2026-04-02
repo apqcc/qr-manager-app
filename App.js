@@ -20,7 +20,7 @@ export default function App() {
     setSlugIn(""); setUrlIn(""); setView("dashboard");
   };
 
-  return (
+  return 
     <div style={{ padding: "20px" }}>
       <h1>QR Manager - Pure Life</h1>
       
