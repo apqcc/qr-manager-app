@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 // We'll use a CDN script instead via dynamic script injection
 
 const QR_CDN = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+export default function App()
 
 function loadScript(src) {
   return new Promise((res, rej) => {
@@ -893,5 +894,6 @@ function EditModal({ entry, onSave, onClose, toast }) {
         </div>
       </div>
     </div>
+export default function App()
   );
 }
