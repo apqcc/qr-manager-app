@@ -893,6 +893,5 @@ function EditModal({ entry, onSave, onClose, toast }) {
         </div>
       </div>
     </div>
-export default function App()
   );
 }
