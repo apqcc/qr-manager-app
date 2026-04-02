@@ -12,37 +12,36 @@ export default function App() {
   }, []);
 
   const handleCreate = () => {
-    if (!slugIn || !urlIn) return alert("Fill all fields");
-    const newEntry = { id: Math.random().toString(), slug: slugIn, pdfUrl: urlIn };
-    const next = [newEntry, ...slugs];
+    if (!slugIn || !urlIn) return alert("الرجاء تعبئة جميع الخانات");
+    const next = [{ id: Math.random().toString(), slug: slugIn, pdfUrl: urlIn }, ...slugs];
     setSlugs(next);
     localStorage.setItem("qr-slugs", JSON.stringify(next));
     setSlugIn(""); setUrlIn(""); setView("dashboard");
   };
 
-  return 
-    <div style={{ padding: "20px" }}>
-      <h1>QR Manager - Pure Life</h1>
+  return (
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>نظام إدارة الروابط الديناميكية</h1>
       
-      <nav style={{ marginBottom: "20px" }}>
-        <button onClick={() => setView("dashboard")}>Dashboard</button>
-        <button onClick={() => setView("create")} style={{ marginLeft: "10px" }}>+ New QR</button>
-      </nav>
+      <div style={{ marginBottom: "20px" }}>
+        <button onClick={() => setView("dashboard")}>لوحة التحكم</button>
+        <button onClick={() => setView("create")} style={{ marginLeft: "10px" }}>+ إنشاء كود جديد</button>
+      </div>
 
       {view === "dashboard" ? (
         <div>
-          {slugs.map(s => (
-            <div key={s.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
-              <p><strong>Slug:</strong> /go/{s.slug}</p>
-              <p><strong>Link:</strong> {s.pdfUrl}</p>
+          {slugs.length === 0 ? <p>لا يوجد روابط حالياً</p> : slugs.map(s => (
+            <div key={s.id} style={{ border: "1px solid #000", padding: "10px", margin: "10px 0" }}>
+              <p>الاسم (Slug): {s.slug}</p>
+              <p>الرابط الحالي: {s.pdfUrl}</p>
             </div>
           ))}
         </div>
       ) : (
         <div>
-          <input placeholder="Slug Name" value={slugIn} onChange={e => setSlugIn(e.target.value)} style={{ display: "block", marginBottom: "10px" }} />
-          <input placeholder="PDF Link" value={urlIn} onChange={e => setUrlIn(e.target.value)} style={{ display: "block", marginBottom: "10px" }} />
-          <button onClick={handleCreate}>Save</button>
+          <input placeholder="اسم الكود (مثلاً file1)" value={slugIn} onChange={e => setSlugIn(e.target.value)} style={{ display: "block", marginBottom: "10px" }} />
+          <input placeholder="رابط الملف (PDF URL)" value={urlIn} onChange={e => setUrlIn(e.target.value)} style={{ display: "block", marginBottom: "10px" }} />
+          <button onClick={handleCreate}>حفظ وتفعيل</button>
         </div>
       )}
     </div>
